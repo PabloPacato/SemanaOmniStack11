@@ -27,7 +27,7 @@ module.exports = {
 
 
     async create(request, response) {
-        const { title, description, value } = request.body;
+        const { title, description, value, category_id } = request.body;
         const ong_id = request.headers.authorization;
 
         const [id] = await connection('incidents').insert({
@@ -35,6 +35,7 @@ module.exports = {
             description,
             value,
             ong_id,
+            category_id
         });
 
         return response.json({ id });
@@ -55,6 +56,6 @@ module.exports = {
 
         await connection('incidents').where('id', id).delete()
 
-        return response.staturs(204).send();
+        return response.status(204).send();
     }
 }
