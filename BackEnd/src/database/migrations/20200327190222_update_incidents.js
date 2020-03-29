@@ -2,7 +2,6 @@
 exports.up = function(knex) {
     return knex.schema.alterTable('incidents', function (table){
         table.string('category_id');
-
         table.foreign('category_id').references('id').inTable('category');
     });
 };
